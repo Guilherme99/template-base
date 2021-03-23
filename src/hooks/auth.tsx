@@ -59,7 +59,7 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const Forgot = useCallback(async ({ email}) => {
-    const response = await axios.post('https://identoolfier-api.herokuapp.com/rest-auth/password/reset/', {
+    await axios.post('https://identoolfier-api.herokuapp.com/rest-auth/password/reset/', {
       email,
     },{
       headers: {

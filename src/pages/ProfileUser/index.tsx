@@ -3,7 +3,6 @@ import NavBar from '../../components/Navbar';
 import {Styles} from './styles';
 import axio from 'axios'
 import Logo from './../../assets/ICONEZINHO.png';
-import {useHistory} from 'react-router-dom';
 import Loading from '../../components/Loading';
 import {
   Form,
@@ -14,6 +13,7 @@ import {
   Icon
 } from "semantic-ui-react";
 import { useToast } from '../../hooks/toast';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface DataUsers {
   id:number,
@@ -155,6 +155,13 @@ const Atualizar:React.FC = () => {
       </Button>
       </div>
         ) : ''}
+            <Adsense
+            client="ca-pub-2562382365369923"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
     </Styles>
   );
 }

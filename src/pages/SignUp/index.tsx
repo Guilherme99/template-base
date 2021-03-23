@@ -20,6 +20,7 @@ import ReactInputMask from 'react-input-mask';
 import { Segment } from 'semantic-ui-react';
 import { FaPlusCircle, FaRegIdCard } from 'react-icons/fa';
 import { AiFillRedEnvelope } from 'react-icons/ai';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface SignUpFormData {
   username: string,
@@ -269,6 +270,10 @@ const SignUp: React.FC = () => {
             <FiHome /> Tela de Início
           </Link>
       </Content>
+      <Adsense
+          client="ca-pub-2562382365369923"
+          slot="5870779718"
+          />
       <Background/>
     </Container>
   );

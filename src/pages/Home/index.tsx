@@ -11,6 +11,7 @@ import HeaderLogin from '../../components/Navbar';
 import Loading from '../../components/Loading';
 
 import { useToast } from '../../hooks/toast';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface propMatriz {
   img: string,
@@ -360,6 +361,13 @@ const Home = ()=> {
               </div>
           </div>
         }
+           <Adsense
+            client="ca-pub-2562382365369923"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
     </Styles>
   
   );

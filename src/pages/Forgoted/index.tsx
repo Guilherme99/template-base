@@ -1,10 +1,10 @@
 import React, { useRef, useCallback, useEffect } from 'react';
-import { FiLogIn, FiUser, FiLock, FiHome } from 'react-icons/fi';
+import { FiLogIn, FiHome } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
@@ -17,6 +17,7 @@ import Button from '../../components/Button';
 import logoImg from './../../assets/ICONEZINHO.png';
 import axios from 'axios';
 import { FaEnvelope } from 'react-icons/fa';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface ForgotFormData {
   email: string;
@@ -27,7 +28,6 @@ const Signin: React.FC = () => {
 
   const { Forgot } = useAuth();
   const { addToast } = useToast();
-  const history = useHistory();
 
   useEffect( () => {
     (async () => {
@@ -94,7 +94,7 @@ const Signin: React.FC = () => {
         });
       }
     },
-    [Forgot, addToast, history],
+    [Forgot, addToast],
   );
 
   return (
@@ -113,6 +113,13 @@ const Signin: React.FC = () => {
           <FiLogIn />
             Criar minha conta
         </Link>
+        <Adsense
+            client="ca-pub-2562382365369923"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
       </Content>
       <Background />
     </Container>

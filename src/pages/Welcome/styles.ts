@@ -179,6 +179,48 @@ export const Style = styled.div`
         }
     }
     }
+    @media (max-width:450px){
+       .imagem-de-fundo {
+        display:flex;
+        padding-top:15%;  
+      }
+      .meio h1{
+        font-size: 22pt;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight:500;
+        color:#8492a6;
+    }
+    
+    .descricao {
+        text-align: left;
+        font-size: 18px;
+        font-family: 'Noto Sans', sans-serif;
+        color:#828694;
+    }
+    
+    }
+    @media (max-width:1200px){
+        .meio {
+                display:flex;
+                flex-direction: column;
+                justify-content:top;
+                top:0;
+             }
+             .blur-conteudo {
+                display:flex;
+                flex-direction: column;
+                justify-content:top;
+                align-items:left;
+                z-index: 2;
+                width:100%;
+                height:100vh;
+                max-width: 1080px;
+                padding-left: 5%;
+                margin-top: -40%;
+                margin-bottom: -20%;
+            }
+    
+    }
     @media (max-width:900px){
         display:flex;
         flex-direction: column;
@@ -231,20 +273,18 @@ export const Style = styled.div`
                 margin: auto;
                 display:block;
             }
-    
 
     }    
-    @media (max-width:400px){
+    @media (max-width:899px){
         .imagem-de-fundo {
             top:0;
             height:100%;
-            background-size: auto;
+            background-size: cover;
          }
            
         .app {
             display:flex;
             flex-direction: column;
-            justify-content:center;
             align-items:center;
             position:relative;
             z-index: 1;
@@ -255,7 +295,6 @@ export const Style = styled.div`
             .info {
                 display:flex;
                 flex-direction: column;
-                justify-content:center;
                 align-items:center;
                 color: white;
                 text-align: center;
@@ -268,20 +307,23 @@ export const Style = styled.div`
                 background-size: 80% 80%;
                 width:350px;
                 height:400px;
-                margin: auto;
+                margin: -25% auto 0 auto;
                 display:block;
             }
     
 
     }    
-    @media (max-height:600px){
+    
+    @media (min-width:900px) and (max-width:1600px){
         .imagem-de-fundo {
             top:0;
             height:100%;
             background-size: initial;
+            
          }
-           
+      
         .app {
+            margin:0 auto;
             display:flex;
             flex-direction: column;
             justify-content:center;
@@ -299,21 +341,40 @@ export const Style = styled.div`
                 align-items:center;
                 color: white;
                 text-align: center;
-                /* margin-top:-230px; */
+                
                 
             }
             }
             .img-bg{
                 background: url(${signInBackgroundImg2}) no-repeat center;
-                background-size: 80% 80%;
+                background-size: 75% 100%;
                 width:350px;
-                height:400px;
+                height:500px;
                 margin: auto;
                 display:block;
             }
     
 
     }    
+
+    @media (min-width:1100px) and (max-height:800px){
+
+        height: 100%;
+
+        .img-bg{
+                background: url(${signInBackgroundImg2}) no-repeat center;
+                background-size: 75% 90%;
+                width:350px;
+                height:400px;
+                margin: auto;
+                display:block;
+            }
+            .imagem-de-fundo {
+                background: url(${signInBackgroundImg}) no-repeat center;
+                background-size: 100% 100%;
+                    
+            }
+    }
    
     
 `;
@@ -340,7 +401,7 @@ export const Background = styled.div`
       left: 50%;
       transform: translateX(-50%);
     }
-  @media (max-width:900px){
-    display:none;;
-} 
+  @media (max-width:1600px){
+    display:none;
+ } 
 `;

@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -16,6 +16,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logoImg from './../../assets/ICONEZINHO.png';
 import axios from 'axios';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface SignInFormData {
   user: string;
@@ -134,9 +135,18 @@ const Signin: React.FC = () => {
               <FiLogIn />
               Criar minha conta
             </Link>
+         
+          <Adsense
+            client="ca-pub-2562382365369923"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
           </Content>
           <Background />
     </Container>
+    
   );
 };
 

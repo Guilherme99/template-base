@@ -1,5 +1,5 @@
-import React, { FormEvent, useCallback, useRef } from 'react';
-import { serialize } from 'object-to-formdata';
+import React, { useCallback, useRef } from 'react';
+/* import { serialize } from 'object-to-formdata'; */
 
 import Header2 from '../../components/Navbar';
 import {Style} from './styles';
@@ -12,7 +12,7 @@ import  ReactInputMask from "react-input-mask";
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
 
-import { FiCalendar, FiLock, FiPhone, FiUser } from 'react-icons/fi';
+import { FiCalendar, FiPhone, FiUser } from 'react-icons/fi';
 import { AiFillRedEnvelope } from 'react-icons/ai';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -26,7 +26,6 @@ import {
   Header,
   Segment
 } from "semantic-ui-react";
-import { isUndefined } from 'util';
 import { useAuth } from '../../hooks/auth';
 
 
@@ -161,7 +160,7 @@ const handleSubmit = useCallback(
         } 
 
       
-    },[ signIn, addToast, history],
+    },[ addToast, history],
   ); 
 
   return (
