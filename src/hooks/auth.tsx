@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import api from '../services/api';
 
@@ -7,13 +8,18 @@ interface AuthData {
 }
 
 interface SignInCredentials {
-  email: string;
+  username: string;
   password: string;
+}
+
+interface ForgotCredentials {
+  email: string;
 }
 
 interface AuthContextData {
   user: object;
   signIn(credentials: SignInCredentials): Promise<void>;
+  Forgot(credentials: ForgotCredentials): Promise<void>;
   signOut(): void;
 }
 
@@ -21,8 +27,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [authData, setAuthData] = useState<AuthData>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@LDTI:token_user');
+    const user = localStorage.getItem('@LDTI:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -31,29 +37,48 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthData;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('/sessions', {
-      email,
+  const signIn = useCallback(async ({ username, password }) => {
+    const response = await api.post('login/', {
+      username,
       password,
-    });
+    },{
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Token "+localStorage.getItem('@LDTI:key')
+      }
+    }); 
 
-    const { token, user } = response.data;
-
-    localStorage.setItem('@LDTI:token', token);
+    const { token, id_usuario} = response.data;
+    const user = username;
+    
+    localStorage.setItem('@LDTI:token_user', token);
     localStorage.setItem('@LDTI:user', JSON.stringify(user));
+    localStorage.setItem("@LDTI:id_user", id_usuario); 
 
     setAuthData({ token, user });
   }, []);
 
+  const Forgot = useCallback(async ({ email}) => {
+    const response = await axios.post('https://identoolfier-api.herokuapp.com/rest-auth/password/reset/', {
+      email,
+    },{
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Token "+localStorage.getItem('@LDTI:key')
+      }
+    }); 
+  }, []);
+
   const signOut = useCallback(() => {
-    localStorage.removeItem('@LDTI:token');
+    localStorage.removeItem('@LDTI:token_user');
     localStorage.removeItem('@LDTI:user');
+    localStorage.removeItem('@LDTI:id_user');
 
     setAuthData({} as AuthData);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: authData.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: authData.user, signIn, signOut, Forgot }}>
       {children}
     </AuthContext.Provider>
   );

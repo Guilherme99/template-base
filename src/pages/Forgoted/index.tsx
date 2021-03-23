@@ -1,5 +1,5 @@
-import React, { useRef, useCallback, useEffect, useState } from 'react';
-import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
+import React, { useRef, useCallback, useEffect } from 'react';
+import { FiLogIn, FiUser, FiLock, FiHome } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -16,21 +16,20 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import logoImg from './../../assets/ICONEZINHO.png';
 import axios from 'axios';
+import { FaEnvelope } from 'react-icons/fa';
 
-interface SignInFormData {
-  user: string;
-  password: string;
+interface ForgotFormData {
+  email: string;
 }
 
 const Signin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { signIn } = useAuth();
+  const { Forgot } = useAuth();
   const { addToast } = useToast();
   const history = useHistory();
 
   useEffect( () => {
-    
     (async () => {
         await axios({
           method: 'POST',
@@ -50,43 +49,36 @@ const Signin: React.FC = () => {
           //handle error
           console.log(err);
         });
-    })();     
+    })();
+   
     return () => {
      // localStorage.clear();
     }
   }, [])
   
   const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
+    async (data: ForgotFormData) => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          user: Yup.string()
-            .required('Usuário obrigatório'),
-          password: Yup.string()
-            .required('Senha obrigatória')
-            .min(8, 'Mínimo de 8 caracteres'),
-            
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Insira um e-mail válido'),
         });
 
         await schema.validate(data, {
           abortEarly: false, // force return all errors
         });
 
-        await signIn({
-          username: data.user,
-          password: data.password,
+        await Forgot({
+          email: data.email
         });
 
         addToast({
           type: 'success',
-          title: 'Login',
-          description: 'Login realizado com sucesso.',
+          title: 'Recuperação de senha',
+          description: 'Acesse seu e-mail para mais informações.',
         });
-
-        setTimeout(() => {
-            history.push('/Home');  
-        }, 5000);
         
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -96,46 +88,33 @@ const Signin: React.FC = () => {
         }
 
         addToast({
-          type: 'error',
-          title: 'Erro na autenticação',
-          description: 'Ocorreu um erro ao fazer login, cheque as credênciais.',
+          type: 'info',
+          title: 'Erro na recuperação.',
+          description: 'Ocorreu um erro ao recuperar sua senha. Tente novamente.',
         });
       }
     },
-    [signIn, addToast, history],
+    [Forgot, addToast, history],
   );
 
   return (
     <Container>
-          <Content>
-            <img src={logoImg} alt="Identoolfier" />
-            <Form ref={formRef} onSubmit={handleSubmit}>
-              <h1>Olá, Faça seu login</h1>
-              <Input name="user" icon={FiUser} type="text" placeholder="Usuário" />
-              <Input
-                name="password"
-                icon={FiLock}
-                type="password"
-                placeholder="Senha"
-                autoComplete="on"
-              />
-              <Button type="submit">Entrar</Button>
-              <Link id="Create-Account" to="/forgot">
-                <FiLock />
-                Esqueci minha senha
-              </Link>          
-            </Form>
-            <div className="separator">
-            <hr></hr>
-              Ou  
-            <hr></hr>
-          </div>
-            <Link id="Create-Account" to="/signup">
-              <FiLogIn />
-              Criar minha conta
-            </Link>
-          </Content>
-          <Background />
+      <Content>
+        <img src={logoImg} alt="Identoolfier" />
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <h1>Recuperar senha</h1>
+          <Input name="email" icon={FaEnvelope} type="text" placeholder="Email" />
+          <Button type="submit">Restaurar</Button>
+          <Link id="Create-Account" to="/">
+            <FiHome /> Tela de Início
+          </Link>
+        </Form>
+        <Link id="Create-Account" to="/signup">
+          <FiLogIn />
+            Criar minha conta
+        </Link>
+      </Content>
+      <Background />
     </Container>
   );
 };
