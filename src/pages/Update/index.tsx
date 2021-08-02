@@ -26,7 +26,6 @@ import {
   Header,
   Segment
 } from "semantic-ui-react";
-import { useAuth } from '../../hooks/auth';
 
 
 interface UpdateFormData {
@@ -45,7 +44,6 @@ const Update:React.FC = () => {
 const formRef = useRef<FormHandles | any>(null);
 
 const { addToast } = useToast();
-const { signIn } = useAuth();
 
 const history = useHistory();
 

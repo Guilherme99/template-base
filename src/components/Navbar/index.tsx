@@ -55,6 +55,11 @@ const Navbar = () => {
                                         <span><FaIcons.FaEnvelope/> Sobre Nós</span>
                                     </a>
                                 </li>
+                                <li key={'app'} className={'nav-text'} >
+                                    <a target="_blank" href={'https://play.google.com/store/apps/details?id=br.com.identoolfier'} rel="noreferrer">
+                                        <span><FaIcons.FaAndroid/> Baixar App</span>
+                                    </a>
+                                </li>
                                 <li key={'sair'} className={'nav-text'} onClick={signOut} >
                                     <Link to={''}>
                                         <span><AiIcons.AiOutlineExport/> Sair</span>

@@ -82,6 +82,7 @@ const Historic = ()=> {
           "Authorization": "Token "+localStorage.getItem("@LDTI:token_user") 
         }
   
+    // eslint-disable-next-line no-loop-func
     }).then(res=> {        
       status = res.data.analisado; 
 
@@ -95,7 +96,8 @@ const Historic = ()=> {
           description: 'Item identificado!',
         });
       }
-    }).catch(err=>
+    // eslint-disable-next-line no-loop-func
+    }).catch(()=>
       status = false
         
     )  

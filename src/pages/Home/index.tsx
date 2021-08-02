@@ -211,6 +211,7 @@ const Home = ()=> {
             "Authorization": "Token "+localStorage.getItem("@LDTI:token_user") 
           }
     
+      // eslint-disable-next-line no-loop-func
       }).then(res=> {        
         status = res.data.analisado; 
 
@@ -221,7 +222,8 @@ const Home = ()=> {
           editar(id, dados, status);  
 
         }
-      }).catch(err=>
+      // eslint-disable-next-line no-loop-func
+      }).catch(()=>
         status = false
           
       )  

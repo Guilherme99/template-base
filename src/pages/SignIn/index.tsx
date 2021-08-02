@@ -9,7 +9,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content } from './styles';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
@@ -17,6 +17,9 @@ import Button from '../../components/Button';
 import logoImg from './../../assets/ICONEZINHO.png';
 import axios from 'axios';
 import { Adsense } from '@ctrl/react-adsense';
+import { Background } from './components/Background';
+import { FaAndroid } from 'react-icons/fa';
+
 
 interface SignInFormData {
   user: string;
@@ -109,7 +112,7 @@ const Signin: React.FC = () => {
   return (
     <Container>
           <Content>
-            <img src={logoImg} alt="Identoolfier" />
+            <img src={logoImg} alt="Identoolfier" className="logo"/>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Olá, Faça seu login</h1>
               <Input name="user" icon={FiUser} type="text" placeholder="Usuário" />
@@ -135,7 +138,18 @@ const Signin: React.FC = () => {
               <FiLogIn />
               Criar minha conta
             </Link>
-         
+            <div className='app'>
+                <div className='info'>
+                    <h1>Plataformas Mobiles Disponíveis: </h1>
+                    
+                    <hr></hr>
+                    <div className="redessociais">
+                        <div className="rede">
+                            <FaAndroid/>  <span> <a target="_blank" href="https://play.google.com/store/apps/details?id=br.com.identoolfier" rel="noreferrer"> Android</a> </span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
           <Adsense
             client="ca-pub-2562382365369923"
             slot="5870779718"
@@ -143,8 +157,9 @@ const Signin: React.FC = () => {
             layout="in-article"
             format="fluid"
           />
+          
           </Content>
-          <Background />
+          <Background/>
     </Container>
     
   );
