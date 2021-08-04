@@ -364,7 +364,7 @@ const Home = ()=> {
           </div>
         }
            <Adsense
-            client="ca-pub-2562382365369923"
+            client="ca-pub-8012874463973317"
             slot="5870779718"
             style={{ display: 'block' }}
             layout="in-article"

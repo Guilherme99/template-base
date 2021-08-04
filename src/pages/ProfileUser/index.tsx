@@ -155,13 +155,13 @@ const Atualizar:React.FC = () => {
       </Button>
       </div>
         ) : ''}
-            <Adsense
-            client="ca-pub-2562382365369923"
-            slot="5870779718"
-            style={{ display: 'block' }}
-            layout="in-article"
-            format="fluid"
-          />
+        <Adsense
+        client="ca-pub-8012874463973317"
+        slot="5870779718"
+        style={{ display: 'block' }}
+        layout="in-article"
+        format="fluid"
+      />
     </Styles>
   );
 }

@@ -1,3 +1,4 @@
+import { Adsense } from '@ctrl/react-adsense';
 import React from 'react';
 import { FaAndroid } from "react-icons/fa"
 import {Content} from './styles';
@@ -16,5 +17,12 @@ export const  Background: React.FC = () => (
                 </div>
             </div>
         </div> 
+        <Adsense
+            client="ca-pub-8012874463973317"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
     </Content>
 )

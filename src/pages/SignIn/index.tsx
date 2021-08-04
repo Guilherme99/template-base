@@ -160,6 +160,14 @@ const Signin: React.FC = () => {
           
           </Content>
           <Background/>
+
+          <Adsense
+            client="ca-pub-8012874463973317"
+            slot="5870779718"
+            style={{ display: 'block' }}
+            layout="in-article"
+            format="fluid"
+          />
     </Container>
     
   );
